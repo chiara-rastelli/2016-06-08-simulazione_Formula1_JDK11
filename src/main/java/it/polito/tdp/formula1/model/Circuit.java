@@ -11,6 +11,7 @@ public class Circuit {
 	private double lng ;
 	private int alt ;
 	private String url ;
+	
 	public Circuit(int circuitId, String circuitRef, String name, String location, String country, double lat,
 			double lng, int alt, String url) {
 		super();
@@ -78,8 +79,10 @@ public class Circuit {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	@Override
+	public String toString() {
+		return "Circuit " + circuitId + ", name: " + name;
+	}
 	
-	
-
 }
 

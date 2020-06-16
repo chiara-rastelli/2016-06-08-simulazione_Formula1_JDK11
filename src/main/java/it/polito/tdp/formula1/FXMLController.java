@@ -3,6 +3,8 @@ package it.polito.tdp.formula1;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.formula1.model.Circuit;
+import it.polito.tdp.formula1.model.Driver;
 import it.polito.tdp.formula1.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,13 +22,13 @@ public class FXMLController {
     private URL location;
 
     @FXML
-    private ComboBox<?> boxCircuit;
+    private ComboBox<Circuit> boxCircuit;
 
     @FXML
     private ComboBox<?> boxDriver;
 
     @FXML
-    private ComboBox<?> boxSeason;
+    private ComboBox<Integer> boxSeason;
 
     @FXML
     private TextArea txtResult;
@@ -38,7 +40,25 @@ public class FXMLController {
 
     @FXML
     void doInfoGara(ActionEvent event) {
-
+    	this.txtResult.clear();
+    	if (this.boxCircuit.getValue()==null||this.boxSeason.getValue()==null) {
+    		this.txtResult.setText("Devi prima selezionare un anno, poi un circuito e poi cliccare!\n");
+    		return;
+    	}
+    	this.txtResult.appendText("Ecco i piloti che hanno partecipato a questa gara:\n");
+    	for(Driver d : this.model.listDriversByRace(this.boxSeason.getValue(), this.boxCircuit.getValue())) {
+    		this.txtResult.appendText(d.toString()+"\n");
+    	}
+    	this.txtResult.appendText("Ecco le informazioni sulla gara:\n");
+    	this.txtResult.appendText("DEVI ASSOLUTAMENTE RIVEDERE QUESTA PARTE!!!");
+    //	this.txtResult.appendText(this.model.getRaceByCircuitAndYear(this.boxSeason.getValue(), this.boxCircuit.getValue()).toString());
+    }
+    
+    @FXML
+    void onChange(ActionEvent event) {
+    	Integer anno = this.boxSeason.getValue();
+    	if(anno!=null)
+    		this.boxCircuit.getItems().addAll(this.model.getAllCircuitsByYear(anno));
     }
 
     @FXML
@@ -52,5 +72,7 @@ public class FXMLController {
 
 	public void setModel(Model model) {
 		this.model = model;
+		this.boxSeason.getItems().addAll(this.model.getAllYears());
+		
 	}
 }

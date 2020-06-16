@@ -35,7 +35,7 @@
                   <Label text="Pilota" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <ComboBox fx:id="boxDriver" prefWidth="300.0" promptText="Pilota..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#doInfoGara" text="Info Gara" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="boxSeason" prefHeight="25.0" prefWidth="119.0" promptText="Anno..." GridPane.rowIndex="1" />
+                  <ComboBox fx:id="boxSeason" onAction="#onChange" prefHeight="25.0" prefWidth="119.0" promptText="Anno..." GridPane.rowIndex="1" />
                   <Label text="Anno" />
                   <Label text="Circuito" GridPane.columnIndex="1" />
                   <Button mnemonicParsing="false" onAction="#doFantaGara" text="Fanta-Gara" GridPane.columnIndex="2" GridPane.rowIndex="3" />
